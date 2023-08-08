@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrida Classes</title>
+</head>
+<body>
+    
+    <h1>Corrida</h1>
+   
+    <script>
+        class Pessoa {
+            constructor(nome, idade) {
+                this.nome = nome;
+                this.idade = idade;
+            }
+        }
+
+        class Piloto extends Pessoa {
+            constructor(nome, idade, numeroIdentificacao) {
+                super(nome, idade);
+                this.numeroIdentificacao = numeroIdentificacao;
+            }
+        }
+
+        class Motor {
+            constructor(potencia) {
+                this.potencia = potencia;
+            }
+
+            acelerar() {
+                console.log("Vrum Vrum! Acelerando o carro com potência de " + this.potencia + " cavalos!");
+            }
+        }
+
+        class Carro {
+            constructor(marca, modelo, motor, piloto) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.motor = motor;
+                this.piloto = piloto;
+            }
+
+            acelerarCarro() {
+                this.motor.acelerar();
+            }
+
+            informacoesCarro() {
+                console.log("Carro: " + this.marca + " " + this.modelo);
+                console.log("Piloto: " + this.piloto.nome + ", Idade: " + this.piloto.idade + ", Número de Identificação: " + this.piloto.numeroIdentificacao);
+            }
+        }
+
+        class Equipe {
+            constructor(nome) {
+                this.nome = nome;
+                this.carros = [];
+            }
+
+            adicionarCarro(carro) {
+                this.carros.push(carro);
+            }
+
+            mostrarCarros() {
+                console.log("Carros da equipe " + this.nome + ":");
+                this.carros.forEach(carro => {
+                    carro.informacoesCarro();
+                });
+            }
+        }
+
+        class Corrida {
+            constructor(nome) {
+                this.nome = nome;
+                this.equipes = [];
+            }
+
+            adicionarEquipe(equipe) {
+                this.equipes.push(equipe);
+            }
+
+            iniciarCorrida() {
+                console.log("Iniciando a corrida " + this.nome + "!");
+                this.equipes.forEach(equipe => {
+                    console.log("Equipe " + equipe.nome + " participando da corrida.");
+                    equipe.mostrarCarros();
+                });
+            }
+        }
+
+        // Piloto
+        const piloto1 = new Piloto("João", 30, 123);
+        const piloto2 = new Piloto("Maria", 25, 456);
+
+        // motor
+        const motorCarro1 = new Motor(200);
+        const motorCarro2 = new Motor(250);
+
+        // carros
+        const carroFerrari = new Carro("Ferrari", "F1", motorCarro1, piloto1);
+        const carroMercedes = new Carro("Mercedes", "AMG GT", motorCarro2, piloto2);
+
+        // equipes
+        const equipeFerrari = new Equipe("Ferrari");
+        equipeFerrari.adicionarCarro(carroFerrari);
+
+        const equipeMercedes = new Equipe("Mercedes");
+        equipeMercedes.adicionarCarro(carroMercedes);
+
+        const corridaF1 = new Corrida("Corrida de Fórmula 1");
+        corridaF1.adicionarEquipe(equipeFerrari);
+        corridaF1.adicionarEquipe(equipeMercedes);
+
+        
+        corridaF1.iniciarCorrida();
+    </script>
+
+     </script>
+
+
+
+
+</body>
+</html>
